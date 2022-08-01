@@ -1,0 +1,36 @@
+Hello World!
+
+문제
+네 자연수 A, B, C, D가 주어진다. 이때, A와 B를 붙인 수와 C와 D를 붙인 수의 합을 구하는 프로그램을 작성하시오.
+
+두 수 A와 B를 합치는 것은 A의 뒤에 B를 붙이는 것을 의미한다. 즉, 20과 30을 붙이면 2030이 된다.
+
+입력
+첫째 줄에 네 자연수 A, B, C, D가 주어진다. (1 ≤ A, B, C, D ≤ 1,000,000)
+
+출력
+A와 B를 붙인 수와 C와 D를 붙인 수의 합을 출력한다.
+
+스트링으로 입력 받아서
+스트링을 합치고
+스트링을 숫자로 바꿔서
+합친다
+
+MAIN:
+    DECLARE A B C D
+    GET user input and put it into A B C D
+    // use stoi?
+    DECLARE strings which is AB_str and CD_str
+    DECLARE results which is AB_int and CD_int
+    FOR: scan for AB_str from back to front
+        CONVERT current to integer
+        CAL current_int * 10^current_digit
+        ADD calculation above to AB_int
+    FOR: scan for CD_str from back to front
+        CONVERT current to integer
+        CAL current_int * 10^current digit
+        ADD calculation above to CD_int
+    CAL AB_int + CD_int
+    PRINT calculation above
+    
+
