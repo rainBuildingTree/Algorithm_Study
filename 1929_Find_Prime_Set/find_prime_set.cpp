@@ -13,37 +13,40 @@ MAIN:
     4. print the members of the array, which are bigger than M and not -1. (Newline should be inserted between printing each members)
 */
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-
+    //0
     int M, N;
     cin >> M >> N;
 
     if (N == 1)
         return 0;
 
-    int* prime_array = new int[N+1];
+    //1
+    bool* prime_array = new bool[N+1];
     
-    prime_array[0] = -1;
-    prime_array[1] = -1;
-
+    //2
+    prime_array[0] = false;
+    prime_array[1] = false;
+    for (int i = 2; i <= N; ++i)
+        prime_array[i] = true;
+    
+    //3
     for (int i = 2; i <= N; ++i) {
-        if (prime_array[i] != -1) {
+        if (prime_array[i] == true) {
             bool there_is_something_to_delete = (i*2 <= N);
             bool something_deleted = false;
             if (there_is_something_to_delete)
                 for (int j = 2; j*i <= N; ++j)
-                    if (prime_array[j*i] != -1) {
+                    if (prime_array[j*i] == true) {
                         something_deleted = true;
-                        prime_array[j*i] = -1;
+                        prime_array[j*i] = false;
                     }
             if (!something_deleted)
                 break; 
         }
     }
 
-    for (int i = M; i < N; ++i) {
-        if (prime_array[i] != -1)
+    for (int i = M; i <= N; ++i) {
+        if (prime_array[i] == true)
             cout << i << '\n';
     }
 
