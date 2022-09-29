@@ -19,6 +19,7 @@ int check_longest(char** table, const int table_size) {
             if (table[i][j] != current_color) {
                 longest_len = (longest_len < current_len) ? current_len : longest_len;
                 current_len = 1;
+                current_color = table[i][j];
                 continue;
             }
             ++current_len;
@@ -33,13 +34,13 @@ int check_longest(char** table, const int table_size) {
             if (table[i][j] != current_color) {
                 longest_len = (longest_len < current_len) ? current_len : longest_len;
                 current_len = 1;
+                current_color = table[i][j];
                 continue;
             }
             ++current_len;
         }
         longest_len = (longest_len < current_len) ? current_len : longest_len;
     }
-
     return longest_len;
 }
 
@@ -72,8 +73,6 @@ int main() {
     int n, longest_len = 1;
     cin >> n;
     char** table = new char*[n];
-
-    cout << "table created... at least\n";
     
     for (int i = 0; i < n; ++i) {
         table[i] = new char[n];
@@ -81,30 +80,16 @@ int main() {
         cin >> temp_input;
         for (int j = 0; j < n; ++j)
             table[i][j] = temp_input[j];
-        //DEBUG
-        cout << "The input string is: " << temp_input << endl;
-        for (int j = 0; j < n; ++j) {
-            cout << table[i][j] << ' ';
-        }
-        cout << endl;
     }
-
-    cout << "input read\n";
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            print_current_loc(table, n, i, j);
             if (j != n-1)
                 if (table[i][j] != table[i][j+1]) {
                     char temp = table[i][j];
                     table[i][j] = table[i][j+1];
                     table[i][j+1] = temp;
-                    //DEBUG
-                    print_table(table, n);
-                    cout << "------jchange------\n";
                     int max_len = check_longest(table, n);
-                    //DEBUG
-                    cout << max_len << '\n';
                     longest_len = (longest_len < max_len) ? max_len : longest_len;
                     temp = table[i][j];
                     table[i][j] = table[i][j+1];
@@ -116,19 +101,13 @@ int main() {
                     char temp = table[i][j];
                     table[i][j] = table[i+1][j];
                     table[i+1][j] = temp;
-                    //DEBUG
-                    print_table(table, n);
-                    cout << "------ichange------\n";
                     int max_len = check_longest(table, n);
-                    //DEBUG
-                    cout << max_len << '\n';
                     longest_len = (longest_len < max_len) ? max_len : longest_len;
                     temp = table[i][j];
                     table[i][j] = table[i+1][j];
                     table[i+1][j] = temp;
                     
                 }
-            cout << "====== Good ======\n";
         }
     }
 
